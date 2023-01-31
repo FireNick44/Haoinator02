@@ -1,0 +1,70 @@
+<ion-content [fullscreen]="true">
+  <ion-slides mode="ios" pager="ios">
+    <ion-slide>
+      <div class="countWrapper">
+        <p>{{counter}}</p>
+
+        <div>
+          <ion-button (click)="add()" class="countBtn"> + </ion-button>
+          <ion-button (click)="sub()" class="countBtn"> - </ion-button>
+        </div>
+
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <ion-content>
+        <div class="countWrapper countWrapper1">
+          
+          <!--
+            
+            <ng-container *ngFor="let c of createdObj; index as i">
+              <pre>
+                <code>
+                  {{ createdObj | json }}
+                </code>
+              </pre>
+              <p>{{i+1}}</p>
+            </ng-container>
+            
+          -->
+
+
+          <h1>Counters</h1>
+          
+          <ion-content>
+            <div>
+              <ion-list [inset]="true">
+                <ion-radio-group [(ngModel)]="selectedValue" (ionChange)="checkValue()" >
+                  
+                  <ion-item *ngFor="let c of createdObj; index as i">
+                    <div class="countLabel">
+                      <ion-label> {{ c.name }}  </ion-label>
+                      <ion-label> {{ c.count }} </ion-label>
+                    </div>
+                    <ion-radio slot="start" value="{{c.id}}"></ion-radio>
+                  </ion-item>
+                  
+                </ion-radio-group>
+              </ion-list>
+            </div>
+            
+            <div>
+              
+              <ion-button (click)="create()">
+                <ion-icon name="add-circle" color="white"></ion-icon>
+              </ion-button>
+              
+              <ion-button (click)="remove()" color="danger">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+              
+            </div>
+          </ion-content>
+          
+        </div>
+        
+      </ion-content>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>

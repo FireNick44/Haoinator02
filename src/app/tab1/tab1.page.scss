@@ -1,0 +1,42 @@
+ion-slides{
+   height: 100%;
+   width: 100%;
+   
+   .countWrapper1{
+      justify-content: flex-start !important;
+   }
+   
+   .countWrapper{
+      padding-top: 20px;
+      height: 100%;
+      width: 100%;
+   
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+   
+      p{
+         font-size: 80px;
+      }
+   
+      .countBtn{
+         font-size: larger;
+         font-size: 40px;
+         
+         height: 100px;
+         width:  100px;
+         padding: 10px;
+      }
+
+      
+   }
+}
+
+.countLabel{
+   display: flex;
+
+   :first-child{
+      width: 190px ;
+   }
+}

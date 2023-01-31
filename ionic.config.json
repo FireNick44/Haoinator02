@@ -1,0 +1,7 @@
+{
+  "name": "Haoinator02",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
