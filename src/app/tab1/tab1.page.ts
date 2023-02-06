@@ -37,6 +37,7 @@ export class Tab1Page {
       var n: string = 'First Counter';
       this.createdObj = [{ id: 0, name: n , count: 0 }];
       this.storageService.set('cId', 0);
+      this.selectedValue = 0;
     } else {
       //after first load
       this.createdObj = c;
@@ -49,11 +50,16 @@ export class Tab1Page {
   }
 
   add() {
-    this.counter++;
+    //console.log(this.createdObj[this.selectedValue]);
+    //this.counter++;
+    this.createdObj[(this.selectedValue - 1)].count++;
+    this.save();
   }
 
   sub() {
-    this.counter--;
+    //this.counter--;
+    this.createdObj[(this.selectedValue - 1)].count--;
+    this.save();
   }
 
   remove() {}
