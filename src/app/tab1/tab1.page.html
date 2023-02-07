@@ -34,14 +34,14 @@
           <ion-content>
             <div>
               <ion-list [inset]="true">
-                <ion-radio-group [(ngModel)]="selectedValue" (ionChange)="checkValue()" >
+                <ion-radio-group name="radio-group" [(ngModel)]="selectedValue" (ionChange)="checkValue()" #radioGroup>
                   
-                  <ion-item *ngFor="let c of createdObj; index as i">
+                  <ion-item *ngFor="let c of createdObj; index as index">
                     <div class="countLabel">
                       <ion-label> {{ c.name }}  </ion-label>
                       <ion-label> {{ c.count }} </ion-label>
                     </div>
-                    <ion-radio slot="start" value="{{c.id}}"></ion-radio>
+                    <ion-radio slot="start" value="{{index}}"></ion-radio>
                   </ion-item>
                   
                 </ion-radio-group>

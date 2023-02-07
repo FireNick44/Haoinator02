@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { Component, ViewChild } from '@angular/core';
+import { AlertController, IonRadioGroup  } from '@ionic/angular';
 import { StorageService } from '../_services/storage.service';
 
 //import { Observable, of } from "rxjs";
@@ -9,14 +9,18 @@ import { StorageService } from '../_services/storage.service';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
 })
+
 export class Tab1Page {
+
+  @ViewChild('radioGroup') radioGroup: IonRadioGroup
+
   counter: number = 0;
   createdObj: cList[] = [];
 
-  selectedValue: any;
+  selectedValue: number;
 
-  //https://stackoverflow.com/questions/68348217/how-to-get-the-value-of-the-selected-ion-radio-button-after-submission-using-ang
   checkValue() {
+    //https://stackoverflow.com/questions/68348217/how-to-get-the-value-of-the-selected-ion-radio-button-after-submission-using-ang
       console.log('Selected value: ', this.selectedValue);
   }
 
@@ -42,6 +46,7 @@ export class Tab1Page {
       //after first load
       this.createdObj = c;
     }
+    this.radioGroup.value = "0";
     this.save();
   }
 
@@ -57,12 +62,19 @@ export class Tab1Page {
   }
 
   sub() {
-    //this.counter--;
     this.createdObj[(this.selectedValue - 1)].count--;
     this.save();
   }
 
-  remove() {}
+  remove() {
+    var indexOfArray = this.selectedValue - 1;
+    var v: string = String(indexOfArray);
+    this.createdObj.splice(indexOfArray, 1);
+    this.radioGroup.value = v + '';
+    console.log("v");
+    console.log(v);
+    this.save();
+  }
 
   async create() {
     const alert = await this.alertController.create({
