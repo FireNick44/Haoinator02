@@ -12,26 +12,27 @@ import { StorageService } from '../_services/storage.service';
 
 export class Tab1Page {
 
+  constructor(
+    private storageService: StorageService,
+    private alertController: AlertController,
+  ) {
+    //if(this.radioGroup.value == undefined) this.radioGroup.value = "0";
+    this.load();
+  }
+
+  ngOnInit() {}
+
   @ViewChild('radioGroup') radioGroup: IonRadioGroup
 
   counter: number = 0;
   createdObj: cList[] = [];
 
-  selectedValue: number;
+  selectedValue: any;
 
   checkValue() {
     //https://stackoverflow.com/questions/68348217/how-to-get-the-value-of-the-selected-ion-radio-button-after-submission-using-ang
       console.log('Selected value: ', this.selectedValue);
   }
-
-  constructor(
-    private storageService: StorageService,
-    private alertController: AlertController
-  ) {
-    this.load();
-  }
-
-  ngOnInit() {}
 
   async load() {
     var c: cList[] = JSON.parse(await this.storageService.get('cObj'));
@@ -46,7 +47,8 @@ export class Tab1Page {
       //after first load
       this.createdObj = c;
     }
-    this.radioGroup.value = "0";
+    //this.radioGroup.value = "0";
+    //this.selectedValue = 0 ;
     this.save();
   }
 
@@ -57,12 +59,12 @@ export class Tab1Page {
   add() {
     //console.log(this.createdObj[this.selectedValue]);
     //this.counter++;
-    this.createdObj[(this.selectedValue - 1)].count++;
+    this.createdObj[this.selectedValue].count++;
     this.save();
   }
 
   sub() {
-    this.createdObj[(this.selectedValue - 1)].count--;
+    this.createdObj[this.selectedValue].count--;
     this.save();
   }
 
@@ -70,8 +72,8 @@ export class Tab1Page {
     var indexOfArray = this.selectedValue - 1;
     var v: string = String(indexOfArray);
     this.createdObj.splice(indexOfArray, 1);
-    this.radioGroup.value = v + '';
-    console.log("v");
+    this.radioGroup.value = v;
+    console.log("selected value via. var:");
     console.log(v);
     this.save();
   }

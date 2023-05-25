@@ -2,7 +2,12 @@
   <ion-slides mode="ios" pager="ios">
     <ion-slide>
       <div class="countWrapper">
-        <p>{{counter}}</p>
+
+        <!--
+          this.createdObj[this.selectedValue].count;
+        -->
+
+        <p>{{this.createdObj[this.selectedValue].count}}</p>
 
         <div>
           <ion-button (click)="add()" class="countBtn"> + </ion-button>
@@ -14,8 +19,10 @@
     <ion-slide>
       <ion-content>
         <div class="countWrapper countWrapper1">
-          
+
+
           <!--
+            <ion-input class="inpt" type="text" [(ngModel)]="counter"></ion-input>
             
             <ng-container *ngFor="let c of createdObj; index as i">
               <pre>
@@ -41,7 +48,7 @@
                       <ion-label> {{ c.name }}  </ion-label>
                       <ion-label> {{ c.count }} </ion-label>
                     </div>
-                    <ion-radio slot="start" value="{{index}}"></ion-radio>
+                    <ion-radio slot="start" value="{{c.id}}"></ion-radio>
                   </ion-item>
                   
                 </ion-radio-group>
